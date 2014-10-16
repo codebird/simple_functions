@@ -46,8 +46,7 @@ function convert_to_letters($number){
 			$string=$this_string.', '.$string;
 		}
 	}
-	return $string;
-	
+	return ltrim($string, ' and');
 }
 
 //Testing
