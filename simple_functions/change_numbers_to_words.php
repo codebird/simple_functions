@@ -1,5 +1,5 @@
 <?php
-function conver_to_letters($number){
+function convert_to_letters($number){
 	//Array to change numbers into words
 	$dictionary  = array(1=>'one', 2=>'two', 3=>'three', 4=>'four', 5=>'five', 6=>'six', 7=>'seven', 8=>'eight', 9=>'nine', 10=>'ten', 11=>'eleven', 12=>'twelve', 13=>'thirteen', 14=>'fourteen', 15=>'fifteen', 16=>'sixteen', 17=>'seventeen', 18=>'eighteen', 19=>'nineteen', 20=>'twenty', 30=>'thirty', 40=>'fourty', 50=>'fifty', 60=>'sixty', 70=>'seventy', 80=>'eighty', 90=>'ninety');
 	//Array to add after each section of the number
@@ -47,4 +47,10 @@ function conver_to_letters($number){
 		}
 	}
 	return $string;
+	
 }
+
+//Testing
+echo convert_to_letters(123); //one hundred twenty three
+echo '<br />';
+echo convert_to_letters(53458332);//fifty three million, four hundred fifty eight thousand, and three hundred thirty two
