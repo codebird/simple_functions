@@ -22,28 +22,30 @@ function convert_to_letters($number){
 	for($i=0; $i<count($array); $i++){
 		$string_number=(string)$array[$i];
 		$this_string='';
-
-		//Calculating
-		if(strlen($string_number)==3){
-			$this_string=$dictionary[$string_number[0]].' hundred ';
-			$array[$i]=($array[$i]-(int)$string_number[0]*100);
-		}
-		if($array[$i]>19){
-			$tens=((int)($array[$i]/10))*10;
-			$ones=$array[$i]-$tens;
-			$this_string.=$dictionary[$tens].' '.$dictionary[$ones];
-		}
-		else {
-			$this_string.=$dictionary[$array[$i]];
-		}
-
-		//Adding the section word after our string.
-		$this_string.=' '.$dictionary2[$i];
-		if($string==''){
-			$string='and '.$this_string;
-		}
-		else {
-			$string=$this_string.', '.$string;
+		//if this part is 0 we don't need to enter
+		if((int)$array[$i]!=0){
+			//Calculating
+			if(strlen($string_number)==3){
+				$this_string=$dictionary[$string_number[0]].' hundred ';
+				$array[$i]=($array[$i]-(int)$string_number[0]*100);
+			}
+			if($array[$i]>19){
+				$tens=((int)($array[$i]/10))*10;
+				$ones=$array[$i]-$tens;
+				$this_string.=$dictionary[$tens].' '.$dictionary[$ones];
+			}
+			else {
+				$this_string.=$dictionary[$array[$i]];
+			}
+	
+			//Adding the section word after our string.
+			$this_string.=' '.$dictionary2[$i];
+			if($string==''){
+				$string='and '.$this_string;
+			}
+			else {
+				$string=$this_string.', '.$string;
+			}
 		}
 	}
 	return ltrim($string, ' and');
