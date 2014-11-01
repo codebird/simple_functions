@@ -48,7 +48,7 @@ function convert_to_letters($number){
 			}
 		}
 	}
-	return ltrim($string, ' and');
+	return ltrim($string, 'and');
 }
 
 //Testing
