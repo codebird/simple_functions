@@ -45,5 +45,5 @@ function convert_to_letters(number){
 			}
 		}
 	}
-	return string+' - United States Dollars';
+	return string;
 }
