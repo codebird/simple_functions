@@ -2,9 +2,11 @@
 function convert_to_letters($number){
 
 	//Array to change numbers into words
-	$dictionary  = array(1=>'One', 2=>'two', 3=>'three', 4=>'four', 5=>'five', 6=>'six', 7=>'seven', 8=>'eight', 9=>'nine', 10=>'ten', 11=>'eleven', 12=>'twelve', 13=>'thirteen', 14=>'fourteen', 15=>'fifteen', 16=>'sixteen', 17=>'seventeen', 18=>'eighteen', 19=>'nineteen', 20=>'twenty', 30=>'thirty', 40=>'fourty', 50=>'fifty', 60=>'sixty', 70=>'seventy', 80=>'eighty', 90=>'ninety');
+	$dictionary  = array(1=>'One', 2=>'two', 3=>'three', 4=>'four', 5=>'five', 6=>'six', 7=>'seven', 8=>'eight', 9=>'nine', 10=>'ten', 11=>'eleven', 12=>'twelve', 13=>'thirteen', 14=>'fourteen', 15=>'fifteen', 16=>'sixteen', 17=>'seventeen', 18=>'eighteen', 19=>'nineteen', 20=>'twenty', 30=>'thirty', 40=>'forty', 50=>'fifty', 60=>'sixty', 70=>'seventy', 80=>'eighty', 90=>'ninety');
 	//Array to add after each section of the number
 	$dictionary2=array(0=>'', 1=>'thousand', 2=>'million', 3=>'billion', 4=>'trillion', 5=>'quadrillion', 6=>'quintillion');
+	
+	$number=(int)$number;
 
 	//Converting the number to a string
 	$string_number=(string)$number;
@@ -14,29 +16,24 @@ function convert_to_letters($number){
 
 	//Separating the number into chunks of 3 starting from the end.
 	for($i=0; $i<$loops; $i++){
-		$array[]=substr($string_number, -3, 3);
+		$part=substr($string_number, -3, 3);
 		//Deleting the 3 numbers we just got from our string.
 		$string_number=substr($string_number, 0, -3);
-	}
-
-	//Looping through the array of chunks of 3 or less numbers to change each part into words.
-	for($i=0; $i<count($array); $i++){
-		$string_number=(string)$array[$i];
 		$this_string='';
 
-		if((int)$array[$i]!=0){
+		if((int)$part!=0){
 			//Calculating
-			if(strlen($string_number)==3 && $string_number[0]!=0){
-				$this_string=ucfirst($dictionary[$string_number[0]]).' Hundred ';
-				$array[$i]=($array[$i]-(int)$string_number[0]*100);
+			if(strlen($part)==3 && $part[0]!=0){
+				$this_string=ucfirst($dictionary[$part[0]]).' Hundred ';
+				$part=($part-(int)$part[0]*100);
 			}
-			if($array[$i]>19){
-				$tens=((int)($array[$i]/10))*10;
-				$ones=$array[$i]-$tens;
+			if($part>19){
+				$tens=((int)($part/10))*10;
+				$ones=$part-$tens;
 				$this_string.=ucfirst($dictionary[$tens]).' '.ucfirst($dictionary[$ones]);
 			}
 			else {
-				$this_string.=ucfirst($dictionary[(int)$array[$i]]);
+				$this_string.=ucfirst($dictionary[(int)$part]);
 			}
 
 			//Adding the section word after our string.
